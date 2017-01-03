@@ -1,0 +1,29 @@
+
+<script type="text/javascript"  src="source/plugin/haoxinqing_me_cj/js/jquery-1.6.2.min.js"></script>
+ <script type="text/javascript">
+
+     var jq = jQuery.noConflict();
+     jq(document).ready(function(){
+         jq('.haoxinqing_me_cj').click(
+                 function(){
+                      jq(this).html('{lang haoxinqing_me_cj:caijizhong}');
+                     var obj = jq(this);
+                     var si = setInterval(function(){
+                        if(obj.attr('shanshuo')){
+                            obj.html('{lang haoxinqing_me_cj:caijizhong}...');
+                            obj.removeAttr('shanshuo');
+                        }else{
+                            obj.html('{lang haoxinqing_me_cj:caijizhong}.');
+                            obj.attr('shanshuo',1);
+                        }
+                     },500);
+                     jq.get(obj.attr('link'),function(data){
+                        if(data){
+                            clearInterval(si);
+                            obj.html('{lang haoxinqing_me_cj:caijiwancheng}');
+                        }
+                     });
+                 }
+         );
+     });
+ </script>
